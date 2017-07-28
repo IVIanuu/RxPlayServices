@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.1"
 
 
     defaultConfig {
@@ -24,10 +24,10 @@ android {
 
 dependencies {
     // Google Play Services
-    compile "com.google.android.gms:play-services-base:11.0.2"
+    compile "com.google.android.gms:play-services-base:11.0.4"
 
     // RxJava
-    compile "io.reactivex.rxjava2:rxjava:2.1.0"
+    compile "io.reactivex.rxjava2:rxjava:2.1.1"
 
     // Compile libs
     implementation fileTree(dir: 'libs', include: ['*.jar'])
