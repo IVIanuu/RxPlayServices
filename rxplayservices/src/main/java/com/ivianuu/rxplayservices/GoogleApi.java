@@ -1,9 +1,5 @@
 package com.ivianuu.rxplayservices;
 
-/**
- * @author Manuel Wrage (IVIanuu)
- */
-
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -15,13 +11,13 @@ import com.google.android.gms.common.api.Api;
 interface GoogleApi {
 
     /**
-     * @return requested API
+     * Returns requested API
      */
     @NonNull
     Api api();
 
     /**
-     * @return Options for the API, might be {@code null}
+     * Returns Options for the API, might be null
      */
     @Nullable
     Api.ApiOptions.HasOptions options();

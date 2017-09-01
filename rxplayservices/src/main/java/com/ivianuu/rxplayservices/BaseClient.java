@@ -32,11 +32,12 @@ abstract class BaseClient {
     private final Context context;
     GoogleApiClient googleApiClient;
 
-    BaseClient(Context context) {
+    BaseClient(@NonNull Context context) {
         this.context = context;
     }
 
-    GoogleApiClient buildClient(GoogleApi googleApi) {
+    @NonNull
+    GoogleApiClient buildClient(@NonNull GoogleApi googleApi) {
         GoogleApiClient.Builder builder = new GoogleApiClient.Builder(context);
 
         if (googleApi.options() == null) {

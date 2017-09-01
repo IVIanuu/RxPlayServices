@@ -22,13 +22,13 @@ import android.support.annotation.Nullable;
 import com.google.android.gms.common.api.Api;
 
 /**
- * @author Manuel Wrage (IVIanuu)
+ * Api definition
  */
-class ApiDefinition implements GoogleApi {
+final class ApiDefinition implements GoogleApi {
 
-    private Api api;
+    private final Api api;
 
-    ApiDefinition(Api api) {
+    ApiDefinition(@NonNull Api api) {
         this.api = api;
     }
 

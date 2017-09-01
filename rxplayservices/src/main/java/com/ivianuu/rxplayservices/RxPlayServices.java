@@ -17,6 +17,7 @@
 package com.ivianuu.rxplayservices;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -30,17 +31,11 @@ public class RxPlayServices {
 
     /**
      * Serve a GoogleApiClient with callback actions
-     *
-     * @param context           context to use for the client
-     * @param api               api to use for the client
-     * @param onClientConnected action to perform when the client was connected
-     * @param onError           action to perform if the client throws an error
-     * @see GoogleApiClientActions
      */
-    public static void actions(Context context,
-                               Api api,
-                               Consumer<GoogleApiClient> onClientConnected,
-                               Consumer<Throwable> onError) {
+    public static void actions(@NonNull Context context,
+                               @NonNull Api api,
+                               @NonNull Consumer<GoogleApiClient> onClientConnected,
+                               @NonNull Consumer<Throwable> onError) {
         GoogleApiClientActions.create(context.getApplicationContext(),
                 new ApiDefinition(api),
                 onClientConnected,
@@ -49,13 +44,6 @@ public class RxPlayServices {
 
     /**
      * Serve a GoogleApiClient with callback actions
-     *
-     * @param context           context to use for the client
-     * @param api               api to use for the client
-     * @param options           options for the api
-     * @param onClientConnected action to perform when the client was connected
-     * @param onError           action to perform if the client throws an error
-     * @see GoogleApiClientActions
      */
     public static void actions(Context context,
                                Api api,

@@ -24,11 +24,11 @@ import com.google.android.gms.common.api.Api;
 /**
  * Definition of a Google API that provides more options
  */
-class ApiWithOptions implements GoogleApi {
+final class ApiWithOptions implements GoogleApi {
     private final Api api;
     private final Api.ApiOptions.HasOptions options;
 
-    ApiWithOptions(Api api, Api.ApiOptions.HasOptions options) {
+    ApiWithOptions(@NonNull Api api, @Nullable Api.ApiOptions.HasOptions options) {
         this.api = api;
         this.options = options;
     }

@@ -17,21 +17,19 @@
 package com.ivianuu.rxplayservices;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import io.reactivex.functions.Consumer;
 
 /**
- * Implementation serving a {@link GoogleApiClient} that is usable with Actions.
- * <p>
- * Will provide the created {@link GoogleApiClient} via the action
- * {@link #onClientConnected(GoogleApiClient)} and will disconnect the client immediately afterwards.
+ * Implementation serving a Google api client that is usable with Actions.
  */
 class GoogleApiClientActions extends BaseClient {
 
-    private Consumer<GoogleApiClient> onClientConnected;
-    private Consumer<Throwable> onError;
+    private final Consumer<GoogleApiClient> onClientConnected;
+    private final Consumer<Throwable> onError;
 
     private GoogleApiClientActions(Context context,
                                    Consumer<GoogleApiClient> onClientConnected,
@@ -45,10 +43,13 @@ class GoogleApiClientActions extends BaseClient {
         connect();
     }
 
-    static void create(Context context,
-                       GoogleApi googleApi,
-                       Consumer<GoogleApiClient> onClientConnected,
-                       Consumer<Throwable> onError) {
+    /**
+     * Returns a new google api client actions
+     */
+    static void create(@NonNull Context context,
+                       @NonNull GoogleApi googleApi,
+                       @NonNull Consumer<GoogleApiClient> onClientConnected,
+                       @NonNull Consumer<Throwable> onError) {
         new GoogleApiClientActions(context, onClientConnected, onError, googleApi);
     }
 
