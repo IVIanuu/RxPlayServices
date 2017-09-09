@@ -23,7 +23,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
-import io.reactivex.functions.Cancellable;
 
 /**
  * Provides an interface that serves a {@link GoogleApiClient} as a {@link io.reactivex.Single}.
@@ -53,12 +52,7 @@ public abstract class GoogleApiClientSingle<T> extends BaseClient implements Sin
         buildClient(googleApi);
         connect();
 
-        emitter.setCancellable(new Cancellable() {
-            @Override
-            public void cancel() throws Exception {
-                disconnect();
-            }
-        });
+        emitter.setCancellable(this::disconnect);
     }
 
     /**

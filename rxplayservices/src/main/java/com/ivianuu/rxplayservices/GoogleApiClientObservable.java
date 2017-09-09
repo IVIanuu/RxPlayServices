@@ -23,7 +23,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Cancellable;
 
 /**
  * Serves a {@link GoogleApiClient} as an Observable that will emit the Client in
@@ -53,12 +52,7 @@ class GoogleApiClientObservable extends BaseClient
         buildClient(googleApi);
         connect();
 
-        emitter.setCancellable(new Cancellable() {
-            @Override
-            public void cancel() throws Exception {
-                disconnect();
-            }
-        });
+        emitter.setCancellable(this::disconnect);
     }
 
     @Override

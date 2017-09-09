@@ -23,7 +23,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import io.reactivex.CompletableEmitter;
 import io.reactivex.CompletableOnSubscribe;
-import io.reactivex.functions.Cancellable;
 
 /**
  * Provides an interface that serves a {@link GoogleApiClient} as a {@link io.reactivex.Completable}.
@@ -54,12 +53,7 @@ public abstract class GoogleApiClientCompletable extends BaseClient
         buildClient(googleApi);
         connect();
 
-        emitter.setCancellable(new Cancellable() {
-            @Override
-            public void cancel() throws Exception {
-                disconnect();
-            }
-        });
+        emitter.setCancellable(this::disconnect);
     }
 
     /**

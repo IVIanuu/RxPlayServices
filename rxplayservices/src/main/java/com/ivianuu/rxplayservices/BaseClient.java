@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 /**
@@ -57,12 +56,8 @@ abstract class BaseClient {
                 onClientError(new ClientException("Client connection was suspended."));
             }
         });
-        builder.addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
-            @Override
-            public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                onClientError(new ClientException(connectionResult.getErrorMessage()));
-            }
-        });
+        builder.addOnConnectionFailedListener(connectionResult ->
+                onClientError(new ClientException(connectionResult.getErrorMessage())));
 
         googleApiClient = builder.build();
         return googleApiClient;
